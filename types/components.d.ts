@@ -11,5 +11,6 @@ declare module 'vue' {
     LangSelect: typeof import('./../src/components/lang-select/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SingleGood: typeof import('./../src/components/single-good/single-good.vue')['default']
   }
 }

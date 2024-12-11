@@ -11,7 +11,8 @@
     {
       "path": "pages/tab/home/index",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "首页",
+        "backgroundColor": "#efeff4"
       }
     },
     {
@@ -63,30 +64,30 @@
   },
   "tabBar": {
     "color": "#1b233b",
-    "selectedColor": "#21d59d",
+    "selectedColor": "#2583b7",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [{
-      "iconPath": "static/images/tabbar/icon_home.png",
-      "selectedIconPath": "static/images/tabbar/icon_home_selected.png",
+      "iconPath": "static/images/tabbar/homepage.png",
+      "selectedIconPath": "static/images/tabbar/homepage-sel.png",
       "pagePath": "pages/tab/home/index",
       "text": "首页"
     }, {
-      "iconPath": "static/images/tabbar/icon_list.png",
-      "selectedIconPath": "static/images/tabbar/icon_list_selected.png",
+      "iconPath": "static/images/tabbar/basket.png",
+      "selectedIconPath": "static/images/tabbar/basket-sel.png",
       "pagePath": "pages/tab/list/index",
-      "text": "列表"
+      "text": "购物车"
     }, {
-      "iconPath": "static/images/tabbar/icon_me.png",
-      "selectedIconPath": "static/images/tabbar/icon_me_selected.png",
+      "iconPath": "static/images/tabbar/user.png",
+      "selectedIconPath": "static/images/tabbar/user-sel.png",
       "pagePath": "pages/tab/user/index",
       "text": "我的"
     }]
   },
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTitleText": "地步天机",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#efeff4"
   }
 }
