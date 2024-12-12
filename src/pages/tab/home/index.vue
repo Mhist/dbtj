@@ -42,24 +42,20 @@
           <view class="demo-title">
             {{ item.title }}
           </view>
+          <view class="demo-sku">
+            规格：{{ item.sku }}
+          </view>
           <view class="demo-price">
-            {{ item.price }}元
+            ¥{{ item.price }}
           </view>
-          <view class="demo-tag">
-            <view class="demo-tag-owner">
-              自营
+          <view class="flex content-center justify-between">
+            <view class="demo-sold-quantity">
+              已售卖 {{ item.soldQuantity }} 件
             </view>
-            <view class="demo-tag-text">
-              放心购
+            <view>
+              <up-icon name="shopping-cart" color="#2583B7" size="24" class="u-close" />
             </view>
           </view>
-          <view class="demo-shop">
-            {{ item.shop }}
-          </view>
-          <up-icon
-            name="close-circle-fill" color="#fa3534" size="34" class="u-close"
-            @click="remove(item.id)"
-          />
         </view>
       </template>
       <template #right="{ rightList }">
@@ -68,24 +64,20 @@
           <view class="demo-title">
             {{ item.title }}
           </view>
+          <view class="demo-sku">
+            规格：{{ item.sku }}
+          </view>
           <view class="demo-price">
-            {{ item.price }}元
+            ¥{{ item.price }}
           </view>
-          <view class="demo-tag">
-            <view class="demo-tag-owner">
-              自营
+          <view class="flex content-center justify-between">
+            <view class="demo-sold-quantity">
+              已售卖 {{ item.soldQuantity }} 件
             </view>
-            <view class="demo-tag-text">
-              放心购
+            <view>
+              <up-icon name="shopping-cart" color="#2583B7" size="24" class="u-close" />
             </view>
           </view>
-          <view class="demo-shop">
-            {{ item.shop }}
-          </view>
-          <up-icon
-            name="close-circle-fill" color="#fa3534" size="34" class="u-close"
-            @click="remove(item.id)"
-          />
         </view>
       </template>
     </up-waterfall>
@@ -94,6 +86,10 @@
 </template>
 
 <script setup>
+// 引入
+import {
+  onReachBottom,
+} from '@dcloudio/uni-app';
 import {
   onMounted,
   reactive,
@@ -139,8 +135,8 @@ const baseList = ref([{
 // 创建对子组件的引用
 const uToastRef = ref(null);
 const loadStatus = ref('loadmore');
-const flowList = ref([]);
-const goodList = ref([]);
+const flowList = reactive([]);
+let goodList = reactive([]);
 const uWaterfallRef = ref();
 
 // 定义方法
@@ -151,66 +147,90 @@ const click = (name) => {
 };
 
 const setGoodList = () => {
-  goodList.value = [{
+  goodList = [{
     price: 35,
     title: '北国风光，千里冰封，万里雪飘',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic.sc.chinaz.com/Files/pic/pic9/202002/zzpic23327_s.jpg',
+    soldQuantity: 10,
+    sku: '500ml',
   }, {
     price: 75,
     title: '望长城内外，惟余莽莽',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic.sc.chinaz.com/Files/pic/pic9/202002/zzpic23325_s.jpg',
+    soldQuantity: 100,
+    sku: '100*50厘米',
   }, {
     price: 385,
     title: '大河上下，顿失滔滔',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg',
+    soldQuantity: 100,
+    sku: '1000ml',
   }, {
     price: 784,
     title: '欲与天公试比高',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/zzpic23369_s.jpg',
+    soldQuantity: 100,
+    sku: '200*50厘米',
   }, {
     price: 7891,
     title: '须晴日，看红装素裹，分外妖娆',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2130_s.jpg',
+    soldQuantity: 100,
+    sku: '150*50厘米',
   }, {
     price: 2341,
     shop: '李白杜甫白居易旗舰店',
     title: '江山如此多娇，引无数英雄竞折腰',
     image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23346_s.jpg',
+    soldQuantity: 100,
+    sku: '250*50厘米',
   }, {
     price: 661,
     shop: '李白杜甫白居易旗舰店',
     title: '惜秦皇汉武，略输文采',
     image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23344_s.jpg',
+    soldQuantity: 100,
+    sku: '100*150厘米',
   }, {
     price: 1654,
     title: '唐宗宋祖，稍逊风骚',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23343_s.jpg',
+    soldQuantity: 80,
+    sku: '1500ml',
   }, {
     price: 1678,
     title: '一代天骄，成吉思汗',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23343_s.jpg',
+    soldQuantity: 50,
+    sku: '2500ml',
   }, {
     price: 924,
     title: '只识弯弓射大雕',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23343_s.jpg',
+    soldQuantity: 100,
+    sku: '1500ml',
   }, {
     price: 8243,
     title: '俱往矣，数风流人物，还看今朝',
     shop: '李白杜甫白居易旗舰店',
     image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23343_s.jpg',
+    soldQuantity: 60,
+    sku: '500ml',
   }];
+
+  console.log(goodList, 'goodList');
 };
-const remove = (id) => {
-  uWaterfallRef.value.remove(id);
-};
+  // const remove = (id) => {
+  //   uWaterfallRef.value.remove(id);
+  // };
 const clear = () => {
   uWaterfallRef.value.clear();
 };
@@ -220,25 +240,23 @@ const addRandomData = () => {
   console.log(uni.$u.guid(), '********');
   console.log(uni.$u.random(0, 9), '********');
 
-  for (let i = 0; i < goodList.value.length; i++) {
-    const index = uni.$u.random(0, goodList.value.length - 1);
+  for (let i = 0; i < goodList.length; i++) {
+    const index = uni.$u.random(0, goodList.length - 1);
     // 先转成字符串再转成对象，避免数组对象引用导致数据混乱
-    const item = JSON.parse(JSON.stringify(goodList.value[index]));
+    const item = JSON.parse(JSON.stringify(goodList[index]));
     item.id = uni.$u.guid();
-    flowList.value.push(item);
+    flowList.push(item);
   }
 };
 
-const onReachBottom = () => {
+onReachBottom(() => {
   loadStatus.value = 'loading';
   // 模拟数据加载
   setTimeout(() => {
     addRandomData();
     loadStatus.value = 'loadmore';
   }, 1000);
-};
-
-onReachBottom();
+});
 
 onMounted(() => {
   setGoodList();
@@ -305,6 +323,11 @@ onMounted(() => {
       color: #333;
       text-align: left;
       text-transform: none;
+    }
+
+    .u-waterfall {
+      // min-height: 300px;
+      // max-height: 500px;
     }
   }
 </style>
@@ -373,5 +396,25 @@ onMounted(() => {
     margin-top: 10rpx;
     font-size: 22rpx;
     color: red;
+  }
+
+  .demo-sold-quantity {
+    font-size: 22rpx;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 42rpx;
+    color: #999;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .demo-sku {
+    font-size: 22rpx;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 42rpx;
+    color: #333;
+    text-align: left;
+    text-transform: none;
   }
 </style>
