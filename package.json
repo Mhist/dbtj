@@ -96,7 +96,7 @@
     "postcss-scss": "^4.0.9",
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "1.79.6",
-    "sass-loader": "^16.0.3",
+    "sass-loader": "16.0.3",
     "stylelint": "^16.10.0",
     "stylelint-config-recess-order": "^5.1.1",
     "stylelint-config-standard": "^36.0.0",

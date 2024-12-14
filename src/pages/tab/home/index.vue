@@ -1,7 +1,7 @@
 <template>
   <view class="content">
     <up-gap bg-color="transparent" height="8" />
-    <up-search v-model="keyword" placeholder="输入要搜索的商品名称" :action-style="actionStyle" />
+    <up-search bgColor="#FFF" v-model="keyword" placeholder="输入要搜索的商品名称" :action-style="actionStyle" />
     <up-gap bg-color="transparent" height="15" />
     <up-swiper
       class="swiper-wrap" :list="list2" key-name="image" :show-title="false" :autoplay="false" circular
@@ -27,9 +27,11 @@
         </up-grid-item>
       </up-grid>
     </view>
-    <up-gap bg-color="transparent" height="17" />
-    <up-text type="info" text="推荐区" size="16" color="#333333" :block="true" />
-    <up-gap bg-color="transparent" height="13" />
+
+    <view class="blobk-name">
+      推荐区
+    </view>
+
     <!-- 商品区域 -->
     <up-button @click="clear">
       清空列表
@@ -345,6 +347,20 @@ onMounted(() => {
     position: absolute;
     top: 32rpx;
     right: 32rpx;
+  }
+
+  .blobk-name {
+      margin-top: 17rpx;
+      margin-bottom: 13rpx;
+      width: 96rpx;
+      height: 45rpx;
+      font-weight: 400;
+      font-size: 32rpx;
+      color: #333333;
+      line-height: 45rpx;
+      text-align: left;
+      font-style: normal;
+      text-transform: none;
   }
 
   .demo-image {
