@@ -73,7 +73,8 @@
         </text>
       </view>
       <view class="handle-all">
-        <up-button style="color: #333" class="handle-button" color="#d5d5d5" shape="circle" text="去结算" />
+        <up-button @click="showBuyModeModal" style="color: #333" class="handle-button" color="#d5d5d5" shape="circle"
+          text="去结算" />
       </view>
     </view>
   </view>
@@ -85,8 +86,16 @@
   </view>
   <!-- 结算弹窗 -->
   <view class="">
-    <up-modal :title="modelTitle" :show="show" @confirm="confirm" ref="uModal" :asyncClose="false"
-      :showCancelButton="true" :showConfirmButton="true" contentTextAlign="center"></up-modal>
+    <up-modal :title="buyModeModalTitle" :show="buyModeModalShow" ref="buyModeModalRef" :asyncClose="false"
+      :showCancelButton="false" :showConfirmButton="false" contentTextAlign="center" :closeOnClickOverlay="true">
+      <view class="mode-button-wrap">
+        <up-button @click="buyModeDirectConfirm" style="color: #333" class="handle-button" color="#d5d5d5"
+          shape="circle" text="直接购买" />
+        <up-button @click="buyModeGiveConfirm" style="color: #333" class="handle-button mt-20rpx" color="#d5d5d5"
+          shape="circle" text="赠送好友" />
+      </view>
+
+    </up-modal>
   </view>
 </template>
 
@@ -99,7 +108,8 @@
     onLoad,
     onShow
   } from "@dcloudio/uni-app";
-
+  import { queryParams } from 'uview-plus';
+  const deleteModalRef = ref();
   const deleteModalTitle = ref('确认要删除商品么?');
   let deleteIndex = ref();
   // 创建响应式数据
@@ -121,27 +131,51 @@
     deleteModalShow.value = false;
   };
 
+  let PurchaseType = {
+    DirectPurchase: 1,
+    GiftToFriend: 2
+  }
+  const buyModeModalRef = ref();
+  const buyModeModalTitle = ref('请选择购买形式?');
+  let buyMode = ref();
+  // 创建响应式数据
+  let buyModeModalShow = ref(false);
 
-  // const deleteModalTitle = ref('确认要删除商品么?');
-  // let deleteIndex = ref();
-  // // 创建响应式数据
-  // let deleteModalShow = ref(false);
+  // 方法
+  const showBuyModeModal = (item, index) => {
+    buyModeModalShow.value = true;
 
-  // // 方法
-  // const showDeleteModal = (item, index) => {
-  //   deleteModalShow.value = true;
-  //   deleteIndex.value = index;
+  };
 
-  // };
+  // TODO:写一个函数
+  /*
+  * @description 写一个函数跳转并且传参
+  * @param {number} buyMode
+  * @param {string} basketCheckedObj
+  *
+  */
 
-  // const deleteModalconfirm = () => {
-  //   baseketList.value.splice(deleteIndex.value, 1);
-  //   deleteModalShow.value = false;
-  // };
+  const buyModeDirectConfirm = () => {
+    buyMode.value = PurchaseType.DirectPurchase;
+    console.log(buyMode.value, "buyMode.value");
+    buyModeModalShow.value = false;
+    let params = {
+      buyMode:buyMode.value
+    };
+    let queryString = queryParams(params);
+    console.log(queryString,"queryString");
+    uni.navigateTo({
+      url:'/pages/orderMana/orderConfirm/index' + queryString,
+    })
+  };
 
-  // const deleteModalCancel = () => {
-  //   deleteModalShow.value = false;
-  // };
+  const buyModeGiveConfirm = () => {
+    buyMode.value = PurchaseType.GiftToFriend;
+    console.log(buyMode.value, "buyMode.value");
+    buyModeModalShow.value = false;
+  };
+
+
 
 
 
@@ -506,6 +540,18 @@
   .u-checkbox__label-wrap {
     text {
       color: #f2f2f2;
+    }
+  }
+
+  .mode-button-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .handle-button {
+      height: 62rpx;
+      background: #d5d5d5;
+      border-radius: 31rpx;
     }
   }
 </style>

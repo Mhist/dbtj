@@ -81,6 +81,13 @@
           "navigationBarTitleText": "我的订单",
           "navigationStyle": "custom"
         }
+      },
+      {
+        "path" : "orderConfirm/index",
+        "style" :
+        {
+          "navigationBarTitleText" : "订单确认"
+        }
       } ]
     },
     // 地址管理
