@@ -1,7 +1,7 @@
 <template>
   <view class="xxx-content">
     <view class="good-wrap">
-      <view v-for="(item) in baseketList" :key="item.id" class="single-good">
+      <view v-for="(item,index) in baseketList" :key="item.id" class="single-good">
         <view class="single-select">
           <up-checkbox v-model:checked="item.checked" :custom-style="{}" used-alone shape="circle"
             active-color="#07c160" bg-color="#fff" />
@@ -23,7 +23,8 @@
           </view>
         </view>
         <view class="single-operation">
-          <view class="delete">
+
+          <view class="delete" @click="showDeleteModal(item,index)">
             移除
           </view>
           <view class="amount">
@@ -57,8 +58,8 @@
 
     <view class="collect-wrap">
       <view class="select-all">
-        <up-checkbox v-model:checked="item.checked" :custom-style="{}" used-alone shape="circle" active-color="#07c160"
-          bg-color="#fff" />
+        <up-checkbox label="全选" v-model:checked="isAllChecked" :custom-style="{}" used-alone shape="circle"
+          active-color="#07c160" bg-color="#fff" />
       </view>
       <view class="price-all">
         <text class="price-all-label">
@@ -76,6 +77,17 @@
       </view>
     </view>
   </view>
+  <!-- 移出购物车商品弹窗 -->
+  <view class="">
+    <up-modal :title="deleteModalTitle" :show="deleteModalShow" @confirm="deleteModalconfirm"
+      @cancel="deleteModalCancel" ref="deleteModalRef" :asyncClose="false" :showCancelButton="true"
+      :showConfirmButton="true" contentTextAlign="center"></up-modal>
+  </view>
+  <!-- 结算弹窗 -->
+  <view class="">
+    <up-modal :title="modelTitle" :show="show" @confirm="confirm" ref="uModal" :asyncClose="false"
+      :showCancelButton="true" :showConfirmButton="true" contentTextAlign="center"></up-modal>
+  </view>
 </template>
 
 <script setup lang="js">
@@ -83,6 +95,66 @@
     reactive,
     ref,
   } from 'vue';
+  import {
+    onLoad,
+    onShow
+  } from "@dcloudio/uni-app";
+
+  const deleteModalTitle = ref('确认要删除商品么?');
+  let deleteIndex = ref();
+  // 创建响应式数据
+  let deleteModalShow = ref(false);
+
+  // 方法
+  const showDeleteModal = (item, index) => {
+    deleteModalShow.value = true;
+    deleteIndex.value = index;
+
+  };
+
+  const deleteModalconfirm = () => {
+    baseketList.value.splice(deleteIndex.value, 1);
+    deleteModalShow.value = false;
+  };
+
+  const deleteModalCancel = () => {
+    deleteModalShow.value = false;
+  };
+
+
+  // const deleteModalTitle = ref('确认要删除商品么?');
+  // let deleteIndex = ref();
+  // // 创建响应式数据
+  // let deleteModalShow = ref(false);
+
+  // // 方法
+  // const showDeleteModal = (item, index) => {
+  //   deleteModalShow.value = true;
+  //   deleteIndex.value = index;
+
+  // };
+
+  // const deleteModalconfirm = () => {
+  //   baseketList.value.splice(deleteIndex.value, 1);
+  //   deleteModalShow.value = false;
+  // };
+
+  // const deleteModalCancel = () => {
+  //   deleteModalShow.value = false;
+  // };
+
+
+
+  // uni-app 的生命周期钩子
+  onLoad((opt) => {
+    // 页面加载时执行的代码
+    console.log('页面加载了', opt);
+  });
+
+  onShow(() => {
+    // 页面显示时执行的代码
+    console.log('页面显示了');
+  });
 
   const baseketList = ref([]);
   const priceTotal = ref(600);
