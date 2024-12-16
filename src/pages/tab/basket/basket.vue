@@ -7,7 +7,7 @@
             active-color="#07c160" bg-color="#fff" />
         </view>
         <view class="single-image">
-          <up-image class="image" :show-loading="true" :src="item.imgSrc" width="113rpx" height="113rpx" />
+          <up-image bg-color="#fff" class="image" :show-loading="true" :src="item.imgSrc" width="113rpx" height="113rpx" />
         </view>
         <view class="single-detail">
           <view class="good-name up-line-1">
@@ -391,8 +391,6 @@
 
       .single-good {
         margin-bottom: 20rpx;
-        padding-top: 20px;
-        padding-bottom: 20rpx;
         display: flex;
         align-items: center;
         width: 100%;
@@ -409,6 +407,7 @@
 
         .single-image {
           flex: 20%;
+          background-color: transparent
         }
 
         .single-detail {
