@@ -68,8 +68,7 @@
       "pages": [{
         "path": "profile/index",
         "style": {
-          "navigationBarTitleText": "个人资料",
-          "navigationStyle": "custom"
+          "navigationBarTitleText": "个人资料"
         }
       }]
     },

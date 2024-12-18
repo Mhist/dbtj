@@ -5,7 +5,7 @@
         <up-image :show-loading="true" :src="src" width="100%" height="189rpx"></up-image>
       </view>
       <view class="shape"></view>
-      <view class="info-wrap">
+      <view class="info-wrap" @click="goPersonalProfile">
         <up-avatar class="avatar" :src="avatarSrc" shape="circle" size="86"></up-avatar>
         <text class="name u-line-1">{{name}}</text>
         <view class="arrow">
@@ -175,7 +175,13 @@
     uni.navigateTo({
       url: '/pages/addressMana/address/index',
     })
-  }
+  };
+
+  const goPersonalProfile = ()=>{
+    uni.navigateTo({
+      url: '/pages/profileMana/profile/index',
+    })
+  };
 
   // 登录鉴权，微信小程序端点击tabbar的底层逻辑不触发uni.switchTab，需要在页面onShow生命周期中校验权限
   onShow(async () => {
