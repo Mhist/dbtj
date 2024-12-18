@@ -32,7 +32,7 @@
     <view class="pay-out-wrap">
       <view class="pay-wrap">
         <up-cell-group>
-          <up-cell title="地址管理">
+          <up-cell title="地址管理" @click="goAddressMana">
             <template #icon>
               <up-image style="padding-right: 20rpx;" :show-loading="true" :src="addressIcon" width="100%"
                 height="50rpx"></up-image>
@@ -170,6 +170,12 @@
       })
     }
   };
+
+  const goAddressMana = () => {
+    uni.navigateTo({
+      url: '/pages/addressMana/address/index',
+    })
+  }
 
   // 登录鉴权，微信小程序端点击tabbar的底层逻辑不触发uni.switchTab，需要在页面onShow生命周期中校验权限
   onShow(async () => {

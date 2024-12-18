@@ -96,8 +96,13 @@
       "pages": [{
         "path": "address/index",
         "style": {
-          "navigationBarTitleText": "地址管理",
-          "navigationStyle": "custom"
+          "navigationBarTitleText": "地址管理"
+
+        }
+      }, {
+        "path": "address/addSite",
+        "style": {
+          "navigationBarTitleText": "添加地址"
         }
       }]
     },
