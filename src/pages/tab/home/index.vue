@@ -259,6 +259,8 @@
   onMounted(() => {
     setGoodList();
     addRandomData();
+
+
   });
 </script>
 

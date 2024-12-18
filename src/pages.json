@@ -33,6 +33,7 @@
       "path": "pages/tab/user/index",
       "style": {
         // "navigationStyle": "custom"
+        "navigationBarTitleText": "个人中心"
       },
       "needLogin": true
     }
@@ -76,19 +77,18 @@
     {
       "root": "pages/orderMana",
       "pages": [{
-        "path": "order/index",
-        "style": {
-          "navigationBarTitleText": "我的订单",
-          "navigationStyle": "custom"
-        }
-      },
-      {
-        "path" : "orderConfirm/index",
-        "style" :
+          "path": "order/index",
+          "style": {
+            "navigationBarTitleText": "我的订单"
+          }
+        },
         {
-          "navigationBarTitleText" : "订单确认"
+          "path": "orderConfirm/index",
+          "style": {
+            "navigationBarTitleText": "订单确认"
+          }
         }
-      } ]
+      ]
     },
     // 地址管理
     {

@@ -112,7 +112,8 @@
         </text>
       </view>
       <view class="handle-all">
-        <up-button style="color: #fff" class="handle-button" color="#ff6600" shape="circle" text="去支付" />
+        <up-button @click="payEvent" style="color: #fff" class="handle-button" color="#ff6600" shape="circle"
+          text="去支付" />
       </view>
     </view>
   </view>
@@ -163,6 +164,35 @@
 
   const weixinPayChange = (value) => {
     isWeixinPay.value = true;
+  }
+  // 支付事件
+  const payEvent = () => {
+    //调用后端接口获取必须的参数值：
+    // let payData = await getPayDataFromServer();  // 预留接口
+    let payData = {
+      timeStamp: Date.now(), // 13位时间戳
+      nonceStr: Math.random().toString(36).substr(2, 15),
+      package: "统一下单接口返回的prepay_id参数值，格式为prepay_id=xxxx",
+      signType: "MD5或HMAC - SHA256",
+      paySign: "（签名，根据前面的参数和商户密钥按照一定规则生成）"
+    };
+    // 假设已经从服务器获取了支付参数payData（包含timeStamp、nonceStr、package、signType、paySign等）
+    uni.requestPayment({
+      provider: 'wxpay', // 支付服务提供商
+      timeStamp: payData.timeStamp, // 时间戳
+      nonceStr: payData.nonceStr, // 随机字符串
+      package: payData.package,
+      signType: payData.signType,
+      paySign: payData.paySign,
+      success: function(res) {
+        console.log('支付成功', res);
+        // 在这里可以进行支付成功后的业务逻辑，如更新订单状态等
+      },
+      fail: function(err) {
+        console.log('支付失败', err);
+        // 可以根据失败原因进行相应的提示或业务处理
+      }
+    });
   }
 </script>
 
