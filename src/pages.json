@@ -108,12 +108,37 @@
     {
       "root": "pages/invoiceMana",
       "pages": [{
-        "path": "invoice/index",
-        "style": {
-          "navigationBarTitleText": "发票管理",
-          "navigationStyle": "default"
+          "path": "invoice/index",
+          "style": {
+            "navigationBarTitleText": "发票管理",
+            "navigationStyle": "default"
+          }
+        },
+        {
+          "path": "invoice/orderCouldInvoice",
+          "style": {
+            "navigationBarTitleText": "可开票订单"
+          }
+        },
+        {
+          "path": "invoice/invoiceRecord",
+          "style": {
+            "navigationBarTitleText": "发票记录"
+          }
+        },
+        {
+          "path": "invoice/invoiceHead",
+          "style": {
+            "navigationBarTitleText": "发票抬头"
+          }
+        },
+        {
+          "path": "invoice/invoiceAddOrEdit",
+          "style": {
+            "navigationBarTitleText": "编辑开票信息"
+          }
         }
-      }]
+      ]
     },
     // 提货券管理
     {

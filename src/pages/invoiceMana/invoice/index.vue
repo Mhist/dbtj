@@ -5,11 +5,11 @@
     </up-navbar> -->
     <view class="profile flex box-border mb-3">
       <up-cell-group class="mb-3">
-        <up-cell class="" style="" title="可开票订单" value="" :border="true" :isLink="true">
+        <up-cell @click="goOrderCouldInvoice" class="" style="" title="可开票订单" value="" :border="true" :isLink="true">
         </up-cell>
-        <up-cell class="" style="" title="发票记录" value="" :border="true" :isLink="true">
+        <up-cell @click="goInvoiceRecord" class="" style="" title="发票记录" value="" :border="true" :isLink="true">
         </up-cell>
-        <up-cell class="" style="" title="发票抬头" value="" :border="false" :isLink="true">
+        <up-cell @click="goInvoiceHead" class="" style="" title="发票抬头" value="" :border="false" :isLink="true">
         </up-cell>
       </up-cell-group>
     </view>
@@ -103,7 +103,26 @@
   const open = () => {
     // 给元素赋值，富文本解析器
     content.value = richText;
-  }
+  };
+
+
+  const goOrderCouldInvoice = () => {
+    uni.navigateTo({
+      url: '/pages/invoiceMana/invoice/orderCouldInvoice',
+    })
+  };
+
+  const goInvoiceRecord = () => {
+    uni.navigateTo({
+      url: '/pages/invoiceMana/invoice/invoiceRecord',
+    })
+  };
+
+  const goInvoiceHead = () => {
+    uni.navigateTo({
+      url: '/pages/invoiceMana/invoice/invoiceHead',
+    })
+  };
 </script>
 
 
