@@ -44,7 +44,7 @@
               </view>
             </template>
           </up-cell>
-          <up-cell title="发票管理">
+          <up-cell title="发票管理" @click="goInvoiceMana">
             <template #icon>
               <up-image style="padding-right: 20rpx;" :show-loading="true" :src="invoiceIcon" width="100%"
                 height="50rpx"></up-image>
@@ -55,7 +55,7 @@
               </view>
             </template>
           </up-cell>
-          <up-cell title="提货券管理">
+          <up-cell title="提货券管理" @click="goTicketMana">
             <template #icon>
               <up-image style="padding-right: 20rpx;" :show-loading="true" :src="ticketIcon" width="100%"
                 height="50rpx"></up-image>
@@ -177,7 +177,19 @@
     })
   };
 
-  const goPersonalProfile = ()=>{
+  const goInvoiceMana = () => {
+    uni.navigateTo({
+      url: '/pages/invoiceMana/invoice/index',
+    })
+  }
+
+  const goTicketMana = () => {
+    uni.navigateTo({
+      url: '/pages/ticketMana/ticket/index',
+    })
+  }
+
+  const goPersonalProfile = () => {
     uni.navigateTo({
       url: '/pages/profileMana/profile/index',
     })

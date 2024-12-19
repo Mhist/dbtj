@@ -170,7 +170,7 @@
     //调用后端接口获取必须的参数值：
     // let payData = await getPayDataFromServer();  // 预留接口
     let payData = {
-      timeStamp: Date.now(), // 13位时间戳
+      timeStamp: Date.now().toString(), // 13位时间戳
       nonceStr: Math.random().toString(36).substr(2, 15),
       package: "统一下单接口返回的prepay_id参数值，格式为prepay_id=xxxx",
       signType: "MD5或HMAC - SHA256",

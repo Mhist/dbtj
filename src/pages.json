@@ -32,7 +32,6 @@
     {
       "path": "pages/tab/user/index",
       "style": {
-        // "navigationStyle": "custom"
         "navigationBarTitleText": "个人中心"
       },
       "needLogin": true
@@ -112,7 +111,7 @@
         "path": "invoice/index",
         "style": {
           "navigationBarTitleText": "发票管理",
-          "navigationStyle": "custom"
+          "navigationStyle": "default"
         }
       }]
     },
@@ -123,7 +122,7 @@
         "path": "ticket/index",
         "style": {
           "navigationBarTitleText": "提货券管理",
-          "navigationStyle": "custom"
+          "navigationStyle": "default"
         }
       }]
     },
@@ -134,7 +133,7 @@
         "path": "detail/index",
         "style": {
           "navigationBarTitleText": "商品详情",
-          "navigationStyle": "custom"
+          "navigationStyle": "default"
         }
       }]
     }
