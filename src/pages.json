@@ -135,7 +135,7 @@
         {
           "path": "invoice/invoiceAddOrEdit",
           "style": {
-            "navigationBarTitleText": "编辑开票信息"
+            "navigationBarTitleText": "编辑发票抬头"
           }
         }
       ]

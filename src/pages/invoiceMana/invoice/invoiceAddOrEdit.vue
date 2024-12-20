@@ -3,8 +3,8 @@
     <u-form class="form-wrap" ref="form" :model="formData">
       <u-form-item labelWidth="120" label="抬头类型" prop="headerType">
         <u-radio-group v-model="formData.headerType" @change="groupChange">
-          <up-radio :customStyle="{marginBottom: '8px'}" v-for="(item, index) in radiolist" :key="index"
-            :label="item.name" :name="item.name" @change="radioChange">
+          <up-radio active-color="#07c160" :customStyle="{marginBottom: '8px'}" v-for="(item, index) in radiolist"
+            :key="index" :label="item.name" :name="item.name" @change="radioChange">
           </up-radio>
         </u-radio-group>
       </u-form-item>
@@ -33,11 +33,13 @@
         <u-input placeholder="(选填)" v-model="formData.bankAccount"></u-input>
       </u-form-item>
       <u-form-item labelWidth="120" label="默认发票抬头" prop="isDefault">
-        <u-switch class="flex u-flex-end" v-model="formData.isDefault"></u-switch>
+        <u-switch active-color="#07c160" v-model="formData.isDefault"></u-switch>
       </u-form-item>
     </u-form>
   </view>
   <view class="save-button-wrap">
+    <up-button v-if="isEdit === 'true'" style="border: 1rpx solid #F80404;color: #F80404" @click="deleteForm"
+      class="delete-button" color="#ffffff" shape="circle" text="删除" />
     <up-button @click="submitForm" style="color: #F7F7F7" class="save-button" color="#2583B7" shape="circle"
       text="保存" />
   </view>
@@ -107,6 +109,10 @@
       showTaxPayer.value = false;
     }
   };
+
+  const deleteForm = () => {
+    console.log("delete");
+  };
 </script>
 
 <style scoped lang="scss">
@@ -123,19 +129,20 @@
 
   .save-button-wrap {
     display: flex;
-    flex-direction: column;
     position: fixed;
     left: 20rpx;
     right: 20rpx;
     bottom: 40rpx;
 
-    .save-button {
+    .delete-button {
       height: 62rpx;
-      background: $u-primary;
+      background: #ffffff;
       border-radius: 31rpx;
+      border: 1rpx solid #F80404;
     }
 
-    .exit-button {
+    .save-button {
+      margin-left: 20rpx;
       height: 62rpx;
       border-radius: 31rpx 31rpx 31rpx 31rpx;
       border: 1rpx solid $u-primary;
@@ -155,6 +162,12 @@
   ::v-deep .u-form-item__body__right {
     flex: 1;
     padding-right: 20rpx;
+  }
+
+
+  ::v-deep .u-form-item__body__right__content__slot:last-child {
+    display: flex;
+    justify-content: flex-end;
   }
 </style>
 

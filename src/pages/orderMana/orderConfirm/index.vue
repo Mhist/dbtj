@@ -98,7 +98,7 @@
     <view class="collect-wrap">
       <view class="select-all">
         <!--        <up-checkbox label="全选" v-model:checked="isAllChecked" :custom-style="{}" used-alone shape="circle"
-          active-color="#07c160" bg-color="#fff" /> -->
+           bg-color="#fff" /> -->
       </view>
       <view class="price-all">
         <text class="price-all-label">
