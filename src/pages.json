@@ -137,6 +137,12 @@
           "style": {
             "navigationBarTitleText": "编辑发票抬头"
           }
+        },
+        {
+          "path": "invoice/invoiceInfo",
+          "style": {
+            "navigationBarTitleText": "开票信息"
+          }
         }
       ]
     },
