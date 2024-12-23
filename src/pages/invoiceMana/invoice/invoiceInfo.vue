@@ -49,6 +49,9 @@
       </u-form-item>
     </u-form>
   </view>
+  <view class="explain-content">
+    <rich-text :nodes="content"></rich-text>
+  </view>
   <view class="save-button-wrap">
     <up-button @click="submitForm" style="color: #F7F7F7" class="save-button" color="#07C160" shape="circle"
       text="提交申请" />
@@ -67,8 +70,6 @@
   onLoad((options) => {
     console.log(options.isEdit, "options");
     isEdit.value = options.isEdit;
-
-
   })
 
   // 基本案列数据
@@ -126,6 +127,19 @@
   const deleteForm = () => {
     console.log("delete");
   };
+
+
+  let content = ref();
+  let richText = `  <p>温馨提示:</p>
+<p>1、应国家税务总局要求,您若开具增值税普通发票,须同时提供企业抬头及纳税人识别号,否则发票将无法用于企业报销;</p>
+<p>2、发票将由订单所属城市的公司为您开具;</p>
+<p>3、配合国家税务总局推进全面数字化的电子发票,部分城市已转为全电发票,发票处理时长为1-3个工作日,请耐心等待。</p> `;
+
+
+  onMounted(() => {
+    // 给元素赋值，富文本解析器
+    content.value = richText;
+  });
 </script>
 
 <style scoped lang="scss">
@@ -137,9 +151,22 @@
       background-color: #FFF;
       box-shadow: 0rpx 3rpx 6rpx 1rpx rgba(0, 0, 0, 0.16);
       border-radius: 12rpx 12rpx 12rpx 12rpx;
-      max-height: calc(100vh - 180rpx);
-      overflow: auto;
+      max-height: calc(100vh - 180rpx - 180rpx);
+      overflow-y: scroll;
     }
+  }
+
+  .explain-content {
+    position: fixed;
+    left: 20rpx;
+    right: 20rpx;
+    bottom: 150rpx;
+    height: 180rpx;
+    background-color: #efeff4;
+    font-size: 18rpx;
+    color: #999999;
+    line-height: 30rpx;
+    text-align: left;
   }
 
   .save-button-wrap {
@@ -148,6 +175,8 @@
     left: 20rpx;
     right: 20rpx;
     bottom: 40rpx;
+
+
 
     .delete-button {
       height: 62rpx;
