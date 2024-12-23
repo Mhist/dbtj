@@ -1,27 +1,43 @@
 <template>
-  <view class="profile-wrap fv-page flex flex-col px-4" style="">
-    <!--    <up-navbar class="" style="" :autoBack="true" bgColor="#06D0BCFF" :fixed="true" :placeholder="true" title="个人信息"
-      titleColor="#FFFFFFFF" leftIconColor="#FFFFFFFF">
-    </up-navbar> -->
-    <view class="profile flex box-border mb-3">
-      <up-cell-group class="mb-3">
-        <up-cell class="" title="头像" :border="true" :isLink="true" :clickable="true">
-          <template v-slot:right-icon>
-            <up-avatar :src="src" shape="circle"></up-avatar>
-          </template>
-        </up-cell>
-        <up-cell class="" style="" title="用户名" value="张三" :border="true" :isLink="true">
-        </up-cell>
-        <up-cell class="" style="" title="关联手机" value="18827637106" :border="true" :isLink="true">
-        </up-cell>
-        <up-cell class="" style="" title="性别" value="先生" :isLink="true">
-        </up-cell>
-      </up-cell-group>
-    </view>
+  <view>
+    <up-sticky bgColor="#fff">
+      <up-tabs @click="tabClick" :list="list1" lineWidth="0" lineColor="#07C160" :activeStyle="{
+            color: '#333',
+            fontWeight: 'bold',
+            transform: 'scale(1.05)',
 
-    <view class="save-button-wrap">
-      <up-button @click="" style="color: #F7F7F7" class="save-button" color="#2583B7" shape="circle" text="保存" />
-      <up-button @click="" style="color: #2583B7" class="exit-button mt-20rpx" shape="circle" text="退出登录" />
+        }" :inactiveStyle="{
+            color: '#666666',
+            transform: 'scale(1)'
+        }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></up-tabs>
+    </up-sticky>
+
+    <view v-if="showLeft" class="collect-wrap">
+      <view class="collect-single" v-for="(item,index) in collectList">
+        <view class="single-top">
+          <view class="order-number">
+            订单号：{{item.orderNumber}}
+          </view>
+          <view class="order-name">
+            {{item.name}}
+          </view>
+          <view class="order-get-method">
+            获取方式：{{item.acquisitionMethod}}
+          </view>
+          <view class="order-date">
+            获取方式：{{item.date}}
+          </view>
+        </view>
+        <view class="single-bottom">
+          <up-button @click="reissueInvoice" style="margin-right: 20rpx;" size="mini" color="#081E7E" :plain="true"
+            text="使用"></up-button>
+          <up-button @click="reapplyInvoice" size="mini" color="#081E7E" :plain="true" text="赠送"></up-button>
+          <up-button @click="reapplyInvoice" size="mini" color="#081E7E" :plain="true" text="查看详情"></up-button>
+        </view>
+      </view>
+    </view>
+    <view v-else="showLeft" class="record-wrap">
+
     </view>
   </view>
 </template>
@@ -46,12 +62,32 @@
     onShow
   } from '@dcloudio/uni-app'
   let src = ref('https://uview-plus.jiangruyi.com/uview-plus/album/1.jpg');
+
+
+  // 创建响应式数据
+  const list1 = reactive([{
+      name: '拥有'
+    },
+    {
+      name: '记录'
+    }
+  ]);
+
+  let showLeft = ref(true);
+
+  const tabClick = (item) => {
+    if (item.name === '拥有') {
+      showLeft.value = true;
+    } else {
+      showLeft.value = false;
+    }
+  };
   // 页面加载
   onLoad((options) => {
     loadData()
-  })
+  });
 
-  onShow(() => {})
+  onShow(() => {});
 
   // 数据列表
   const listLoading = ref(false)
@@ -60,57 +96,104 @@
     page: 0,
     limit: 10,
     total: 0
-  })
+  });
+  // 提货券数据
+  const collectList = ref([{
+      id: 1,
+      name: '酒+字画+太岁水 (商品种类)',
+      acquisitionMethod: '自购',
+      date: '2024-12-03 23:00:32',
+      orderNumber: '1234xdftr56ygt23456hbn896',
+    },
+    {
+      id: 2,
+      name: '佛手手',
+      acquisitionMethod: '好友赠送',
+      date: '2024-12-03 23:00:32',
+      orderNumber: '1234xdftr56ygt23456hbn896',
+    },
+    {
+      id: 3,
+      name: '太岁水',
+      acquisitionMethod: '自购',
+      date: '2024-12-03 23:00:32',
+      orderNumber: '1234xdftr56ygt23456hbn896',
+    },
+    {
+      id: 4,
+      name: '大师字画',
+      acquisitionMethod: '自购',
+      date: '2024-12-03 23:00:32',
+      orderNumber: '1234xdftr56ygt23456hbn896',
+    }
+  ]);
 
   // 加载数据
   const loadData = (refresh = false) => {
     listLoading.value = true
     // 请求接口
     listLoading.value = false
-  }
+  };
 </script>
 
 
 <style lang="scss" scoped>
-  .profile-wrap {
-    margin-top: 20rpx;
+  .collect-wrap {
     padding: 0 20rpx;
 
+    .collect-single {
+      margin: 20rpx 0;
+
+      .single-top {
+        background-color: #fff;
+        height: 140rpx;
+        border-radius: 12rpx 12rpx 12rpx 12rpx;
+        padding-left: 20%;
+        padding-top: 20rpx;
+        padding-bottom: 20rpx;
+
+        .order-number {
+          height: 22rpx;
+          font-size: 16rpx;
+          color: $u-dbtj-label-right-order-color;
+          line-height: 16rpx;
+          text-align: right;
+          font-style: normal;
+          text-transform: none;
+        }
+
+        .order-name {}
+
+        .order-get-method {}
+
+        .order-date {}
 
 
-    .profile {
-      background-color: #FFF;
-      box-shadow: 0rpx 3rpx 6rpx 1rpx rgba(0, 0, 0, 0.16);
-      border-radius: 12rpx 12rpx 12rpx 12rpx;
+      }
+
+      .single-bottom {
+        background-color: #fff;
+        height: 45rpx;
+        border-radius: 12rpx 12rpx 12rpx 12rpx;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+
     }
 
 
-    .save-button-wrap {
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      left: 20rpx;
-      right: 20rpx;
-      bottom: 40rpx;
+  }
 
-      .save-button {
-        height: 62rpx;
-        background: $u-primary;
-        border-radius: 31rpx;
-      }
-
-      .exit-button {
-        height: 62rpx;
-        border-radius: 31rpx 31rpx 31rpx 31rpx;
-        border: 1rpx solid $u-primary;
-      }
-    }
+  ::v-deep .u-tabs__wrapper__nav {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-around;
   }
 </style>
 <style lang="scss">
   page {
-
-
     background-color: #efeff4;
   }
 </style>

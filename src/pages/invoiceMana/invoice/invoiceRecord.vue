@@ -245,7 +245,11 @@
             margin-bottom: 20rpx;
 
 
-            .status {}
+            .status {
+              height: 28rpx;
+              font-size: 20rpx;
+              line-height: 20rpx;
+            }
 
             .button-wrap {
               display: flex;
