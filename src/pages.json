@@ -143,6 +143,12 @@
           "style": {
             "navigationBarTitleText": "开票信息"
           }
+        },
+        {
+          "path": "invoice/invoiceRecordDetail",
+          "style": {
+            "navigationBarTitleText": "发票详情"
+          }
         }
       ]
     },
