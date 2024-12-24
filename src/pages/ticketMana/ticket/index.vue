@@ -4,16 +4,15 @@
       <up-tabs @click="tabClick" :list="list1" lineWidth="0" lineColor="#07C160" :activeStyle="{
             color: '#333',
             fontWeight: 'bold',
-            transform: 'scale(1.05)',
-
+            transform: 'scale(1.05)'
         }" :inactiveStyle="{
             color: '#666666',
             transform: 'scale(1)'
         }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></up-tabs>
     </up-sticky>
 
-    <view v-if="showLeft" class="collect-wrap">
-      <view class="collect-single" v-for="(item,index) in collectList">
+    <view class="collect-wrap">
+      <view class="collect-single" v-for="(item,index) in collectList" :key="index">
         <view class="single-top" :class="['dynamic-bg', item.type + '-bg']">
           <view class="order-number">
             订单号：{{item.orderNumber}}
@@ -42,30 +41,18 @@
         </view>
       </view>
     </view>
-    <view v-else="showLeft" class="record-wrap">
 
-    </view>
   </view>
 </template>
 <script setup>
   import {
     ref,
     reactive,
-    watch,
-    computed,
-    onBeforeMount,
-    onMounted,
-    onBeforeUnmount,
-    onUnmounted,
-    onBeforeUpdate,
-    onUpdated,
-    nextTick,
-    toRaw
-  } from 'vue'
+  } from 'vue';
   import {
     onLoad,
     onShow
-  } from '@dcloudio/uni-app'
+  } from '@dcloudio/uni-app';
   let src = ref('https://uview-plus.jiangruyi.com/uview-plus/album/1.jpg');
 
 
@@ -168,7 +155,7 @@
 
       .single-top {
         background-color: #fff;
-        height: 140rpx;
+        height: 150rpx;
         border-radius: 12rpx 12rpx 12rpx 12rpx;
         padding-left: 20%;
         padding-top: 17rpx;
@@ -228,7 +215,7 @@
         .button-wrap {
           width: 50%;
           display: flex;
-          padding: 10rpx 20rpx;
+          padding: 10rpx 5rpx;
           height: 30rpx;
         }
 
@@ -253,7 +240,7 @@
   .dynamic-bg {
     background-size: cover;
     background-repeat: no-repeat;
-    background-size: 100% 248rpx;
+    background-size: 118% 248rpx;
 
   }
 

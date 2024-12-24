@@ -66,6 +66,18 @@
               </view>
             </template>
           </up-cell>
+
+          <up-cell title="商品详情" @click="goGoodDetail">
+            <template #icon>
+              <up-image style="padding-right: 20rpx;" :show-loading="true" :src="ticketIcon" width="100%"
+                height="50rpx"></up-image>
+            </template>
+            <template #right-icon>
+              <view>
+                <up-icon class="flex justify-end" name="arrow-right" size="15"></up-icon>
+              </view>
+            </template>
+          </up-cell>
         </up-cell-group>
       </view>
     </view>
@@ -192,6 +204,13 @@
   const goPersonalProfile = () => {
     uni.navigateTo({
       url: '/pages/profileMana/profile/index',
+    })
+  };
+
+
+  const goGoodDetail = () => {
+    uni.navigateTo({
+      url: '/pages/detailMana/detail/index',
     })
   };
 

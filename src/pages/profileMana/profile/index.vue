@@ -38,7 +38,6 @@
     onBeforeUpdate,
     onUpdated,
     nextTick,
-    defineProps,
     toRaw
   } from 'vue'
   import {

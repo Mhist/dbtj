@@ -159,8 +159,7 @@
       "pages": [{
         "path": "ticket/index",
         "style": {
-          "navigationBarTitleText": "提货券管理",
-          "navigationStyle": "default"
+          "navigationBarTitleText": "提货券管理"
         }
       }]
     },
@@ -170,8 +169,7 @@
       "pages": [{
         "path": "detail/index",
         "style": {
-          "navigationBarTitleText": "商品详情",
-          "navigationStyle": "default"
+          "navigationBarTitleText": "商品详情"
         }
       }]
     }
@@ -179,7 +177,9 @@
   "preloadRule": {
     "pages/tab/home/index": {
       "network": "all",
-      "packages": ["pages/common"]
+      "packages": [
+        "pages/common"
+      ]
     }
   },
   "tabBar": {
@@ -212,13 +212,5 @@
     "navigationBarTitleText": "地步天机",
     "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#efeff4"
-  },
-  "condition": { //模式配置，仅开发期间生效
-    "current": 0, //当前激活的模式(list 的索引项)
-    "list": [{
-      "name": "", //模式名称
-      "path": "", //启动页面，必选
-      "query": "" //启动参数，在页面的onLoad函数里面得到
-    }]
   }
 }
