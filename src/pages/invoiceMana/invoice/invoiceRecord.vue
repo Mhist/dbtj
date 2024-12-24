@@ -57,12 +57,6 @@
   import {
     queryParams
   } from 'uview-plus';
-  import {
-    log
-  } from 'console';
-
-
-
 
   const reissueInvoice = () => {
     // 处理重发发票逻辑
